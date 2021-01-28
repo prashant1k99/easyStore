@@ -4,7 +4,8 @@
   "description": "An easy to use Browser Storage API wrapper, that will handle complex logic of Session Storage or Local Storage.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "tsc": "tsc src/*.ts --outDir build --module AMD"
   },
   "repository": {
     "type": "git",

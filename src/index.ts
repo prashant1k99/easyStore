@@ -1,8 +1,9 @@
-enum StorageType {
+enum StorageEnum {
   session = "Session",
   local = "Local"
 }
 
+type StorageType = keyof typeof StorageEnum
 export default class EasyStore {
   private sessionStorageAccessibility : boolean;
   private localStorageAccessibility : boolean;
@@ -10,17 +11,18 @@ export default class EasyStore {
   // private isLocalStorage : boolean = true;
   private data : any;
   private regexKey : any = new RegExp(/easyStore_[a-zA-Z_$0-9]*/);
+  store : any;
 
   constructor(storage: StorageType) {
     this.sessionStorageAccessibility = window.sessionStorage ? true : false
     this.localStorageAccessibility = window.localStorage ? true : false
 
-    if (storage === "Session" && this.sessionStorageAccessibility) {
+    if (storage === "session" && !this.sessionStorageAccessibility)
+      import('./localSessionStorage.js').then(data => this.store = data)
+    else if (storage === "session") {
+      this.store = sessionStorage
       this.isSessionStorage = true
-    } 
-    // else if (storage === "Session") {
-    //   // setup the class as the sessionStorage
-    // }
+    }
     // else {
     //   this.isLocalStorage = true
     // }
@@ -35,18 +37,18 @@ export default class EasyStore {
     return this.localStorageAccessibility
   }
 
-  set addData(data : { key : string, val : any }) {
+  addData( key : string, val : any ) {
     if (this.isSessionStorage) {
-      sessionStorage.setItem(`easyStore_${data.key}`, JSON.stringify(data.val))
+      this.store.setItem(`easyStore_${key}`, JSON.stringify(val))
     } else {
-      localStorage.setItem(`easyStore_${data.key}`, data.val)
+      localStorage.setItem(`easyStore_${key}`, val)
     }
     return
   }
 
   getData(key : string = this.data) {
     if (this.isSessionStorage) {
-      this.data = JSON.parse(sessionStorage.getItem(`easyStore_${key}`))
+      this.data = JSON.parse(this.store.getItem(`easyStore_${key}`))
       return this
     } else {
       this.data = localStorage.getItem(`easyStore_${key}`)
@@ -56,7 +58,7 @@ export default class EasyStore {
 
   removeData(key : string = this.data) {
     if (this.isSessionStorage) {
-      sessionStorage.removeItem(`easyStore_${key}`)
+      this.store.removeItem(`easyStore_${key}`)
       return this
     } else {
       localStorage.removeItem(`easyStore_${key}`)
@@ -66,10 +68,10 @@ export default class EasyStore {
 
   clear() {
     if (this.isSessionStorage) {
-      let n = sessionStorage.length;
+      let n = this.store.length;
       while(n--) {
-        const key = sessionStorage.key(n);
-        this.regexKey.test(key) && sessionStorage.removeItem(key);
+        const key = this.store.key(n);
+        this.regexKey.test(key) && this.store.removeItem(key);
       }
       return this
     } else {
