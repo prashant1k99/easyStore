@@ -1,0 +1,30 @@
+{
+  "name": "easystore",
+  "version": "0.0.1",
+  "description": "An easy to use Browser Storage API wrapper, that will handle complex logic of Session Storage or Local Storage.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prashant1k99/easyStore.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "Browser",
+    "Storage",
+    "Storage"
+  ],
+  "files": [
+    "dist/"
+  ],
+  "author": "Prashant Singh <prashantco111@gmail.com> (myPortfolio site)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prashant1k99/easyStore/issues"
+  },
+  "homepage": "https://github.com/prashant1k99/easyStore#readme"
+}
