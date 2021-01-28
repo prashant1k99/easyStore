@@ -14,9 +14,9 @@ var EasyStore = /** @class */ (function () {
         if (storage === "Session" && this.sessionStorageAccessibility) {
             this.isSessionStorage = true;
         }
-        else if (storage === "Session") {
-            // setup the class as the sessionStorage
-        }
+        // else if (storage === "Session") {
+        //   // setup the class as the sessionStorage
+        // }
         // else {
         //   this.isLocalStorage = true
         // }
