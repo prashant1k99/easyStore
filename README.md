@@ -13,14 +13,6 @@ npm i easystore
 ```js
 yarn add easystore
 ```
-* Direct import in `html`
-```html
-<script src="https://cdn.jsdelivr.net/npm/easystore@latest/dist/index.js" />
-```
-OR
-```html
-<script src="https://cdn.jsdelivr.net/gh/prashant1k99/easystore/dist/index.js" />
-```
 
 ### Usage
 To use the library using ES6 import module:

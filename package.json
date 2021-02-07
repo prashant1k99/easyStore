@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/prashant1k99/easyStore/issues"
   },
-  "homepage": "https://github.com/prashant1k99/easyStore#readme"
+  "homepage": "https://github.com/prashant1k99/easyStore#readme",
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
 }
