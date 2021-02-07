@@ -1,6 +1,6 @@
 {
   "name": "easystore",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An easy to use Browser Storage API wrapper, that will handle complex logic of Session Storage or Local Storage.",
   "main": "src/index.js",
   "scripts": {
